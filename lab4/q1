@@ -1,0 +1,121 @@
+
+toast_button.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:src="@drawable/img_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button Clicked!"
+        android:textColor="@android:color/white"
+        android:paddingStart="10dp" />
+
+</LinearLayout>
+----------------------------------------------------------------------------------
+
+toast_toggle.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_blue_dark"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:src="@drawable/img" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toggle Changed!"
+        android:textColor="@android:color/white"
+        android:paddingStart="10dp" />
+
+</LinearLayout>
+-----------------------------------------------------------------------------------------
+activity_main,xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <Button
+        android:id="@+id/btnShowToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Button Toast" />
+
+    <ToggleButton
+        android:id="@+id/toggleToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textOn="Toggle ON"
+        android:textOff="Toggle OFF" />
+
+</LinearLayout>
+-------------------------------------------------------------------------------------------------
+
+
+MainActivity.java
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ToggleButton;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btnShowToast;
+    ToggleButton toggleToast;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btnShowToast = findViewById(R.id.btnShowToast);
+        toggleToast = findViewById(R.id.toggleToast);
+
+        btnShowToast.setOnClickListener(v -> showCustomToast(R.layout.toast_button));
+
+        toggleToast.setOnCheckedChangeListener((buttonView, isChecked) ->
+                showCustomToast(R.layout.toast_toggle)
+        );
+    }
+
+    private void showCustomToast(int layoutId) {
+        LayoutInflater inflater = getLayoutInflater();
+        View toastView = inflater.inflate(layoutId, null);
+
+        Toast toast = new Toast(this);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastView);
+        toast.show();
+    }
+}
+--------------------------------------------------------------------------------------------------------------------
+
