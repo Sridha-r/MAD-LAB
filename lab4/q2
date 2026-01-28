@@ -1,0 +1,115 @@
+toast_android.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/toastIcon"
+        android:layout_width="200dp"
+        android:layout_height="140dp" />
+
+    <TextView
+        android:id="@+id/toastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:paddingStart="10dp" />
+
+</LinearLayout>
+---------------------------------------------------------------------------------------
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/btnCupcake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Cupcake" />
+
+    <Button
+        android:id="@+id/btnKitkat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android KitKat"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnOreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Android Oreo"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
+-------------------------------------------------------------------------------------------------------------
+
+
+
+MainActivity.xml
+
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btnCupcake, btnKitkat, btnOreo;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btnCupcake = findViewById(R.id.btnCupcake);
+        btnKitkat = findViewById(R.id.btnKitkat);
+        btnOreo = findViewById(R.id.btnOreo);
+
+        btnCupcake.setOnClickListener(v ->
+                showCustomToast("Android Cupcake", R.drawable.img_1));
+
+        btnKitkat.setOnClickListener(v ->
+                showCustomToast("Android KitKat", R.drawable.img_2));
+
+        btnOreo.setOnClickListener(v ->
+                showCustomToast("Android Oreo", R.drawable.img));
+    }
+
+    private void showCustomToast(String text, int icon) {
+        LayoutInflater inflater = getLayoutInflater();
+        View toastView = inflater.inflate(R.layout.toast_android, null);
+
+        ImageView imageView = toastView.findViewById(R.id.toastIcon);
+        TextView textView = toastView.findViewById(R.id.toastText);
+
+        imageView.setImageResource(icon);
+        textView.setText(text);
+
+        Toast toast = new Toast(this);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastView);
+        toast.show();
+    }
+}
+
+
+
