@@ -1,0 +1,78 @@
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <ToggleButton
+        android:id="@+id/toggleMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="Wi-Fi"
+        android:textOff="Mobile Data"
+        android:text="Current Mode" />
+
+    <ImageView
+        android:id="@+id/imgMode"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/img_1" />
+
+    <Button
+        android:id="@+id/btnChangeMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Mode"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
+--------------------------------------------------------------------------------------------------------------------
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    ToggleButton toggleMode;
+    ImageView imgMode;
+    Button btnChangeMode;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        toggleMode = findViewById(R.id.toggleMode);
+        imgMode = findViewById(R.id.imgMode);
+        btnChangeMode = findViewById(R.id.btnChangeMode);
+
+        // ToggleButton state change
+        toggleMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            updateMode(isChecked);
+        });
+
+        // Change Mode button click
+        btnChangeMode.setOnClickListener(v -> {
+            toggleMode.setChecked(!toggleMode.isChecked());
+        });
+    }
+
+    private void updateMode(boolean isWifi) {
+        if (isWifi) {
+            imgMode.setImageResource(R.drawable.img);
+            Toast.makeText(this, "Current Mode: Wi-Fi", Toast.LENGTH_SHORT).show();
+        } else {
+            imgMode.setImageResource(R.drawable.img_1);
+            Toast.makeText(this, "Current Mode: Mobile Data", Toast.LENGTH_SHORT).show();
+        }
