@@ -1,0 +1,71 @@
+main .java
+
+package com.example.myapplication;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+
+
+activity_xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Justified Text -->
+        <TextView
+            android:id="@+id/txtJustified"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Android provides various features to display and style text. Justified text aligns content evenly across the width, improving readability."
+            android:textSize="16sp"
+            android:justificationMode="inter_word"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Colored Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is colored text"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Font Change -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This text uses a different font"
+            android:fontFamily="serif"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Bold & Italic -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bold and Italic Text"
+            android:textStyle="bold|italic"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>
+
