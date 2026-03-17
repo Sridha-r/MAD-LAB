@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:text="Travel Ticket Booking"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Source -->
+    <Spinner
+        android:id="@+id/spSource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Destination -->
+    <Spinner
+        android:id="@+id/spDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Date -->
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Toggle -->
+    <ToggleButton
+        android:id="@+id/toggleTrip"
+        android:textOn="Round Trip"
+        android:textOff="One Way"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Buttons -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnReset"
+        android:text="Reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
