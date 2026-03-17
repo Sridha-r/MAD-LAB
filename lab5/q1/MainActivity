@@ -1,0 +1,50 @@
+package com.example.myapplication;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    Spinner spVehicle;
+    EditText etVehicleNo, etRCNo;
+    Button btnSubmit;
+
+    String[] vehicles = {"Select Vehicle", "Car", "Bike", "Truck"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        spVehicle = findViewById(R.id.spVehicle);
+        etVehicleNo = findViewById(R.id.etVehicleNo);
+        etRCNo = findViewById(R.id.etRCNo);
+        btnSubmit = findViewById(R.id.btnSubmit);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_dropdown_item, vehicles);
+        spVehicle.setAdapter(adapter);
+
+        btnSubmit.setOnClickListener(v -> {
+
+            String vehicleType = spVehicle.getSelectedItem().toString();
+            String vehicleNo = etVehicleNo.getText().toString();
+            String rcNo = etRCNo.getText().toString();
+
+            if (vehicleType.equals("Select Vehicle") ||
+                    vehicleNo.isEmpty() || rcNo.isEmpty()) {
+
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
+            } else {
+
+                Intent i = new Intent(this, PreviewActivity.class);
+                i.putExtra("type", vehicleType);
+                i.putExtra("vno", vehicleNo);
+                i.putExtra("rc", rcNo);
+                startActivity(i);
+            }
+        });
+    }
+}
