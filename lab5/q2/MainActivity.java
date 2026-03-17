@@ -81,3 +81,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+
+<activity android:name=".DisplayActivity"/>
